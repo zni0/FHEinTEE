@@ -21,3 +21,5 @@ cd into the opensgx directory and follow the instructions to compile the SGX lib
 ./opensgx -s user/demo/sgx-server.sgx --key sign.key
 ./opensgx user/demo/sgx-server.sgx user/demo/sgx-server.conf
 ```
+# Build the client and normal (non SGX) server
+cd into the normal directory and run make. This will give the `client` and `server` bins. You can run both of them without any arguments. The `test.sh` script runs client multiple times from random inputs.
