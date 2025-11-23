@@ -1,2 +1,15 @@
 # FHEinTEE
 A toy project that uses Intel SGX as a FHE encryption service to generate keys and encrypt data.
+# Set up build env
+Opensgx was developed with Ubuntu 14-15. The easiest way to get it running is in a VM.
+```
+wget https://cloud-images.ubuntu.com/releases/trusty/release/ubuntu-14.04-server-cloudimg-amd64-disk1.img
+mv ubuntu-14.04-server-cloudimg-amd64-disk1.img ub.qcow2
+virt-customize -a  ub.qcow2 --root-password password:root
+qemu-system-x86_64 \
+	-enable-kvm \
+	-m 10G -smp 2 \
+	-hda ub.qcow2 \
+	-net nic -net user,hostfwd=tcp::2222-:22 \
+	-nographic
+```
