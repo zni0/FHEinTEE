@@ -1,5 +1,5 @@
-# FHEinTEE
-A toy project that uses Intel SGX as a FHE encryption service to generate keys and encrypt data.
+# FHEinTEE (PHEinTEE rn)
+A toy project that uses Intel SGX as a PHE encryption service to generate keys and encrypt data (using Paillier cryptosystem).
 # Set up build env
 Opensgx was developed with Ubuntu 14-15. The easiest way to get it running is in a VM.
 ```
