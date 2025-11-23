@@ -13,3 +13,11 @@ qemu-system-x86_64 \
 	-net nic -net user,hostfwd=tcp::2222-:22 \
 	-nographic
 ```
+# Build the opensgx enclave
+cd into the opensgx directory and follow the instructions to compile the SGX library. Some of the test programs may fail to compile, but it's fine as long as the user library compiles. Compile and run the sgx-server:
+```
+./opensgx -k
+./opensgx -c user/demo/sgx-server.c
+./opensgx -s user/demo/sgx-server.sgx --key sign.key
+./opensgx user/demo/sgx-server.sgx user/demo/sgx-server.conf
+```
