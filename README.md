@@ -1,5 +1,16 @@
 # FHEinTEE (PHEinTEE rn)
 A toy project that uses Intel SGX as a PHE encryption service to generate keys and encrypt data (using Paillier cryptosystem).
+# Problem
+Fully Homomorphic Encryption (FHE) allows computations to be performed directly on encrypted data. Although it has the potential to improve privacy and security of cloud computation, FHE is rarely deployed in practice due to its complexity. Users must manage large cryptographic keys, choose parameters carefully, and perform costly encryption/decryption steps. This usability barrier prevents many potential applications of FHE in cloud computing, data analytics, and machine learning.
+
+Another approach to solve the confidentiality problem is to use hardwarebased isolation. Confidential computing utilizes TEEs (Trusted Execution Environments) to remove the cloud provider from the TCB using hardware-based security features. Not all hardware platforms support TEEs, and it thus lack widespread adoption. Furthermore, depending on the type of TEE, there are hardware limitations. For example, in Intel SGX, the enclave size is much less than the total system memory. Intel Xeon E Processors offer a maximum EPC size of 0.5GB
+# Solution
+This project uses an Intel SGX enclave (emulated)  as a ”key factory” for the Paillier PHE scheme. The enclave will handle sensitive tasks such as key generation, encryption, and decryption, while leaving the computations to untrusted cloud infrastructure. On a high level:
+• The enclave securely generates and stores secret keys.
+• Client sends ”plaintext” data to the enclave, which encrypts it under the Paillier scheme.
+• The encrypted data is outsourced to the untrusted region for computation.
+• The untrusted server returns ciphertext results, which are decrypted inside the enclave and sent back to the client in plaintext.
+
 # Set up build env
 Opensgx was developed with Ubuntu 14-15. The easiest way to get it running is in a VM.
 ```
